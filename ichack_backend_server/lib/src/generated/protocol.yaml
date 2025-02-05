@@ -1,0 +1,7 @@
+example:
+  - hello:
+processVid:
+  - processVideo:
+text:
+  - record:
+  - generateReply:

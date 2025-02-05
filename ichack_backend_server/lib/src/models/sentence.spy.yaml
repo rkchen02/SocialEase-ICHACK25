@@ -1,0 +1,7 @@
+class: Sentence
+table: sentence
+fields:
+    convoId: int
+    timestamp: DateTime
+    sentence: String
+    emotion: String

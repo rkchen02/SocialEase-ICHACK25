@@ -1,0 +1,54 @@
+services:
+  # Development services
+  postgres:
+    image: postgres:16.3
+    ports:
+      - '8090:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: ichack_backend
+      POSTGRES_PASSWORD: "uFBRc_oFq0H0KCDxjVDqogJEcu58R8i1"
+    volumes:
+      - ichack_backend_data:/var/lib/postgresql/data
+    profiles:
+      - '' # Default profile
+      - dev
+  redis:
+    image: redis:6.2.6
+    ports:
+      - '8091:6379'
+    command: redis-server --requirepass "RCu_hs40gm855pAl_4h_ntSedflGPSp0"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    profiles:
+      - '' # Default profile
+      - dev
+
+  # Test services
+  postgres_test:
+    image: postgres:16.3
+    ports:
+      - '9090:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: ichack_backend_test
+      POSTGRES_PASSWORD: "pI75UUe7Is78UYk3H-gY7ztXrCDEu1od"
+    volumes:
+      - ichack_backend_test_data:/var/lib/postgresql/data
+    profiles:
+      - '' # Default profile
+      - test
+  redis_test:
+    image: redis:6.2.6
+    ports:
+      - '9091:6379'
+    command: redis-server --requirepass "RmqGrrgECzBViwaNTN8Ekhy_l_YVCIWR"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    profiles:
+      - '' # Default profile
+      - test
+
+volumes:
+  ichack_backend_data:
+  ichack_backend_test_data:
